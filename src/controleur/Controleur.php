@@ -3,10 +3,7 @@
 
 function accueilControleur($twig){
     echo $twig->render('accueil.html.twig', array());
-
- 
 }
-
 
 function contactControleur($twig){
     echo $twig->render('contact.html.twig', array());
@@ -47,4 +44,12 @@ function contactControleur($twig){
       }
     echo $twig->render('creerUtilisateur.html.twig', array('form'=>$form));
    }
+
+   function connexionControleur($twig){
+    echo $twig->render('connexion.html.twig', array());
+   }
+
+
+
+
 ?>
