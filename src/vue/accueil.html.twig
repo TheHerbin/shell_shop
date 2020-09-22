@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+{% block title %} {{ parent() }} Accueil {% endblock %}
+{% block body %}
+{{parent()}}
+
+
+<div class="jumbotron">
+  <h1 class="display-3">Bienvenue sur Shell-Shop </h1>
+  <p class="lead">Shell-shop est non-seulement une platefore informative concernant les différents obus des guerres mondiales mais une plateforme d'achat et de vente d'obus</p>
+  <hr class="my-4">
+  <p>Nous vous souhaitons une bonne navigation sur le site !</p>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="index.php?page=creerUtilisateur" role="button">Créer un compte</a>
+  </p>
+</div>
+
+{% endblock %}
