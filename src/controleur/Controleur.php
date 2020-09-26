@@ -36,18 +36,77 @@ function contactControleur($twig){
         }
         $form['email'] = $email;
         $form['idrole'] = $idrole;
-
-
-
-
-
       }
     echo $twig->render('creerUtilisateur.html.twig', array('form'=>$form));
    }
 
-   function connexionControleur($twig){
-    echo $twig->render('connexion.html.twig', array());
+   function connexionControleur($twig, $db){
+    $form = array();
+   
+    if (isset($_POST['valider'])){
+    $form['valide'] = true;
+    $email = $_POST['email'];
+    $mdp = $_POST['mdp'];
+    $utilisateur = new Utilisateur($db);
+    $unUtilisateur = $utilisateur->connect($email);
+    if ($unUtilisateur!=null){
+    $mdpH = password_hash($mdp,PASSWORD_DEFAULT);
+    if(!password_verify($mdp,$unUtilisateur['motdepasse'])){
+        $form['valide'] = false;
+ $form['message'] = 'Login ou mot de passe incorrect';
+ }
+ else{
+    $_SESSION['login'] = $email;
+    $_SESSION['role'] = $unUtilisateur['idrole'];
+ header("Location:index.php");
+ }
+ }
+ else{
+ $form['valide'] = false;
+ $form['message'] = 'Login ou mot de passe incorrect';
+
+ }
+ }
+ echo $twig->render('connexion.html.twig', array('form'=>$form));
+}
+
+   
+
+function deconnexionControleur($twig, $db){
+    session_unset();
+ session_destroy();
+ header("Location:index.php");
+}
+
+function utilisateurControleur($twig, $db){
+    $form = array();
+    $utilisateur = new Utilisateur($db);
+    $liste = $utilisateur->select();
+    echo $twig->render('utilisateur.html.twig', array('form'=>$form,'liste'=>$liste));
+}
+
+function creerObusControleur($twig,$db){
+    $form = array(); 
+    if (isset($_POST['valider'])){
+        $nom = $_POST['nom'];
+        $penetration = $_POST['penetration']; 
+        $description =$_POST['description']; 
+        $form['valide'] = true;
+        $Obus = new Obus($db);
+            $exec = $Obus->insert($nom, $penetration, $description);
+            if (!$exec){
+                $form['valide'] = false;
+                $form['message'] = 'Problème d\'insertion dans la table obus';
+        }
+        $form['nom'] = $nom;
+        
+
+      }
+    echo $twig->render('creerObus.html.twig', array('form'=>$form));
    }
+
+
+
 
 
 

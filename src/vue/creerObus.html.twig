@@ -1,0 +1,57 @@
+{% extends "base.html.twig" %}
+{% block title %}
+	{{ parent() }}
+	Ajouter un obus
+{% endblock %}
+
+{% block body %}
+	{{parent()}}
+
+	{% if form.valide is defined %}
+		{% if form.valide == true %}
+			<h1>Ajout de l'obus nommé {{form.nom}} réussi !</h1>
+	{% else %}
+		<h1>Echec de l'inscription</h1>
+		<h1>
+			<a href="index.php?page=creerObus">Retourner sur la page d'ajout d'un obus </a>
+		</h1>
+	{% endif %}
+{% else %}
+
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-12 bg-black p-4 m-0 text-primary">
+
+			<form action="index.php?page=creerObus" method="post" enctype="application/x-www-form-urlencoded">
+				<fieldset>
+					<legend>Ajout d'un obus</legend>
+					<div class="form-group row"></div>
+					<div class="form-group">
+						<label for="exampleInputEmail1">Nom de l'obus  *</label>
+						<input class="form-control" name="nom" aria-describedby="emailHelp" type="text">
+						<small id="nameHelp" class="form-text text-muted">Nom complet de l'obus ,pas son diminutif !</small>
+					</div>
+					<div class="form-group">
+						<label for="exampleRole">Penetration
+						</label>
+						<select class="form-control" name="penetration">
+							<option value="Très peu Pénétrant">Très Peu Pénétrant</option>
+							<option value="Peu Pénétrant">Peu Pénétrant</option>
+                            <option value="Pénétrant">Pénétrant</option>
+                            <option value="Bonne Pénétration">Bonne Pénétration</option>
+                            <option value="Très Pénétrant">Très Pénétrant</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">Description *</label>
+						<input class="form-control" name="description"  type="text">
+					</div>
+					
+
+					<button type="submit" name="valider" class="btn btn-primary">Envoyer</button>
+				</fieldset>
+			</form>
+		</div>
+			</div>
+	</div>
+{% endif %}{% endblock %}

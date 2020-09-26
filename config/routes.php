@@ -8,6 +8,9 @@ function getPage($db){
  $lesPages['creerUtilisateur'] = "creerUtilisateurControleur";
  $lesPages['maintenance'] = "maintenanceControleur";
  $lesPages['connexion'] = "connexionControleur";
+ $lesPages['deconnexion'] = "deconnexionControleur";
+ $lesPages['utilisateur'] = "utilisateurControleur";
+ $lesPages['creerObus'] = "creerObusControleur";
 
  if($db!=null){
 
