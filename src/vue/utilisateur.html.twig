@@ -5,8 +5,16 @@
 {% endblock %}
 {% block body %}
 	{{ parent() }}
+	
 		<div class="container">
 	<div class="table-responsive">
+	{% if form.etat is defined %}
+{% if form.etat == true %}
+<h1 class="h3 mb-3 font-weight-normal">Suppression réussie</h1>
+{% else %}
+<h1 class="alert alert-danger" role="alert">Problème d'insertion</h1>
+{% endif %}
+{% endif %}
 		<table class="table">
 			<thead>
 				<tr>
@@ -14,16 +22,19 @@
 					<th scope="col">Nom</th>
 					<th scope="col">Prénom</th>
 					<th scope="col">Rôle</th>
+					<th scope="col"></th>
 				</tr>
 			</thead>
 			<tbody>
 				{% for u in liste %}
 
+
 					<tr>
 						<td>{{u.email}}</td>
 						<td>{{u.nom}}</td>
 						<td>{{u.prenom}}</td>
-						<td>{{u.libellerole}}</td>
+						<td>{{u.idrole}}</td>
+						<td><a href="index.php?page=utilisateur&email={{u.email}}">Supprimer</a></td>
 					</tr>
                     {% endfor %}
  </tbody>

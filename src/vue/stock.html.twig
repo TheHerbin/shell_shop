@@ -1,0 +1,65 @@
+{% extends "base.html.twig" %}
+{% block title %}
+	{{ parent() }}
+	Stock
+{% endblock %}
+{% block body %}
+	{{ parent() }}
+		<div class="container">
+	<div class="table-responsive">
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Nom</th>
+					<th scope="col">Prix</th>
+					<th scope="col">Nombre</th>
+				</tr>
+			</thead>
+			<tbody>
+				
+
+					<tr>
+						<td>AP</td>
+						<td>500</td>
+						<td>{{nbAP['nb']}}</td>
+					</tr>
+                    <tr>
+						<td>APHE</td>
+						<td>525</td>
+						<td>{{nbAPHE['nb']}}</td>
+					</tr>
+                    <tr>
+						<td>APCR</td>
+						<td>550</td>
+						<td>{{nbAPCR['nb']}}</td>
+					</tr>
+                    <tr>
+						<td>HE</td>
+						<td>400</td>
+						<td>{{nbHE['nb']}}</td>
+					</tr>
+
+                    <tr>
+						<td>HEAT</td>
+						<td>600</td>
+						<td>{{nbHEAT['nb']}}</td>
+					</tr>
+
+                    <tr>
+						<td>HESH</td>
+						<td>450</td>
+						<td>{{nbHESH['nb']}}</td>
+					</tr>
+                    <tr>
+						<td>ATGM</td>
+						<td>800</td>
+						<td>{{nbATGM['nb']}}</td>
+					</tr>
+                    
+ </tbody>
+ </table>
+ </div>
+  </div>
+
+
+				{% endblock %}

@@ -8,7 +8,7 @@
 			<h1>Inscription réussie</h1>
 			<h1>Voici votre identifiant :
 				{{form.email}}</h1>
-			{% if form.role == 1 %}
+			{% if form.role == Administrateur %}
 				<h1>Vous êtes administrateur du site</h1>
 			{% else %}
 				<h1>Vous êtes un client du site

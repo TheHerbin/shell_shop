@@ -4,13 +4,14 @@
         private $insert;
         private $connect;
         private $select;
+        private $delete;
 
         public function __construct($db){
             $this->db = $db;
             $this->insert = $db->prepare("insert into utilisateur(nom,prenom,email,motdepasse,tel,idrole) values(:nom,:prenom,:email,:motdepasse,:tel,:idrole)");
             $this->connect = $this->db->prepare("select email, idrole, motdepasse from utilisateur where email=:email");
-            $this->select = $db->prepare("select email, idrole, nom, prenom, tel, r.libelle as libellerole from utilisateur u, role r where u.idrole = r.id order by nom");
-
+            $this->select = $db->prepare("select email, idrole, nom, prenom, tel from utilisateur order by nom");
+            $this->delete = $db->prepare("delete from utilisateur where email = :email");
         } 
         
         public function insert($nom,$prenom,$email,$motdepasse,$tel,$idrole){
@@ -32,6 +33,17 @@
             return $this->connect->fetch();
             }
 
+            public function delete($email){
+               
+                $r = true;
+                $this->delete->execute(array(':email'=>$email));
+                if ($this->delete->errorCode()!=0){
+                print_r($this->delete->errorInfo());
+                $r=false;
+                }
+                return $r;
+                }
+
 
 
         public function select(){
@@ -41,6 +53,8 @@
                 }
                 return $this->select->fetchAll();
                 }
+
+               
 
                 
 

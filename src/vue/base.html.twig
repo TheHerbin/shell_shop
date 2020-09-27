@@ -33,18 +33,19 @@
 							</a>
 						</li>
 					
-						{%if session.login is defined %}
-							{%if session.role == 1 %}
+						{% if session.login is defined %}
+					
+							{% if session.role == "Administrateur" %}
 								<li class="nav-item dropdown">
 									<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 										Administration
 									</a>
 									<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-										<a class="dropdown-item" href="#">Produit</a>
-										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="#">Obus</a>
+										<a class="dropdown-item" href="index.php?page=stock">Stock</a>
 										<div class="dropdown-divider"></div>
 										<a class="dropdown-item" href="index.php?page=utilisateur">Utilisateurs</a>
+										<div class="dropdown-divider"></div>
+										<a class="dropdown-item" href="index.php?page=obus">Obus</a>
 									</div>
 								</li>
 
@@ -56,11 +57,11 @@
 										<a class="dropdown-item" href="index.php?page=creerObus">Obus</a>
 										<div class="dropdown-divider"></div>
 										<a class="dropdown-item" href="#">xXXXX</a>
-										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="index.php?page=utilisateur">Utilisateurs</a>
+									
 									</div>
 								</li>
 							{% endif %}
+							
 						{% endif %}
 					</ul>
 					<div class="form-inline my-2 my-lg-0">
@@ -75,7 +76,7 @@
 							</li>
 							<a class="btn btn-primary btn-lg" href="index.php?page=creerUtilisateur" role="button">Créer un compte</a>
 						{% endif %}
-						{%if session.login is defined %}
+						{% if session.login is defined %}
 							<li>
 								<a href="#">{{session.login}}</a>
 							</li>

@@ -28,8 +28,16 @@
 					<div class="form-group row"></div>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Nom de l'obus  *</label>
-						<input class="form-control" name="nom" aria-describedby="emailHelp" type="text">
-						<small id="nameHelp" class="form-text text-muted">Nom complet de l'obus ,pas son diminutif !</small>
+						<select class="form-control" name="nom">
+							<option value="APHE">APHE</option>
+							<option value="AP">AP</option>
+                            <option value="APCR">APCR</option>
+                            <option value="HE">HE</option>
+                            <option value="HESH">HESH</option>
+							<option value="HEAT">HEAT</option>
+							<option value="ATGM">ATGM</option>
+						</select>
+						<small id="nameHelp" class="form-text text-muted">Diminutif de l'obus, par exemple "HE"</small>
 					</div>
 					<div class="form-group">
 						<label for="exampleRole">Penetration
@@ -45,6 +53,10 @@
 					<div class="form-group">
 						<label for="exampleInputPassword1">Description *</label>
 						<input class="form-control" name="description"  type="text">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputPassword1">Prix *</label>
+						<input class="form-control" name="prix"  type="number">
 					</div>
 					
 

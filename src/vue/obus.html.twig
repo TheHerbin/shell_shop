@@ -1,0 +1,34 @@
+{% extends "base.html.twig" %}
+{% block title %}
+	{{ parent() }}
+	Obus
+{% endblock %}
+{% block body %}
+	{{ parent() }}
+		<div class="container">
+	<div class="table-responsive">
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Nom</th>
+					<th scope="col">Pénétration</th>
+                    <th scope="col">Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for o in liste %}
+
+					<tr>
+						<td>{{o.nom}}</td>
+						<td>{{o.penetration}}</td>
+						<td>{{o.description}}</td>
+						
+					</tr>
+                    {% endfor %}
+ </tbody>
+ </table>
+ </div>
+  </div>
+
+
+				{% endblock %}

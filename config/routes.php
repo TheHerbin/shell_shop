@@ -1,16 +1,20 @@
 <?php
 function getPage($db){
-    var_dump($_GET);
+    //var_dump($_GET);
+   
 
 
- $lesPages['accueil'] = "accueilControleur";
- $lesPages['contact'] = "contactControleur";
- $lesPages['creerUtilisateur'] = "creerUtilisateurControleur";
- $lesPages['maintenance'] = "maintenanceControleur";
- $lesPages['connexion'] = "connexionControleur";
- $lesPages['deconnexion'] = "deconnexionControleur";
- $lesPages['utilisateur'] = "utilisateurControleur";
- $lesPages['creerObus'] = "creerObusControleur";
+ $lesPages['accueil'] = "accueilControleur;0";
+ $lesPages['contact'] = "contactControleur;0";
+ $lesPages['creerUtilisateur'] = "creerUtilisateurControleur;0";
+ $lesPages['maintenance'] = "maintenanceControleur;0";
+ $lesPages['connexion'] = "connexionControleur;0";
+ $lesPages['deconnexion'] = "deconnexionControleur;0";
+ $lesPages['utilisateur'] = "utilisateurControleur;0";
+ $lesPages['creerObus'] = "creerObusControleur;0";
+ $lesPages['stock'] = "stockControleur;0";
+ $lesPages['obus'] = "obusControleur;0";
+
 
  if($db!=null){
 
