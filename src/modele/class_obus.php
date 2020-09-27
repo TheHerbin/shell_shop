@@ -9,7 +9,7 @@
             $this->db = $db;
             $this->insert = $db->prepare("insert into obus(nom,penetration,description) values(:nom,:penetration,:description)");
             //$this->connect = $this->db->prepare("select nom, penetration, description from obus where nom=:nom");
-            $this->select = $db->prepare("select o.id, nom, penetration, description from obus o");
+            $this->select = $db->prepare("select nom, penetration, description from obus o");
 
         }
         
