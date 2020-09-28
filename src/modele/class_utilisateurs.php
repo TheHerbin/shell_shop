@@ -6,17 +6,33 @@
         private $select;
         private $delete;
         private $selectByEmail;
+        private $update;
+        
 
         public function __construct($db){
             $this->db = $db;
-            $this->insert = $db->prepare("insert into utilisateur(nom,prenom,email,motdepasse,tel,idrole) values(:nom,:prenom,:email,:motdepasse,:tel,:idrole)");
-            $this->connect = $this->db->prepare("select email, idrole, motdepasse from utilisateur where email=:email");
-            $this->select = $db->prepare("select email, idrole, nom, prenom, tel from utilisateur order by nom");
-            $this->delete = $db->prepare("delete from utilisateur where email = :email");
-            $this->selectByEmail = $db->prepare("select email, tel, nom, prenom, idrole from utilisateur where email=:email");
+            $this->insert = $db->prepare("INSERT into utilisateur(nom,prenom,email,motdepasse,tel,idrole) values(:nom,:prenom,:email,:motdepasse,:tel,:idrole)");
+            $this->connect = $this->db->prepare("SELECT email, idrole, motdepasse from utilisateur where email=:email");
+            $this->select = $db->prepare("SELECT email, idrole, nom, prenom, tel from utilisateur order by nom");
+            $this->delete = $db->prepare("DELETE from utilisateur where email = :email");
+            $this->selectByEmail = $db->prepare("SELECT email, tel, nom, prenom, idrole, motdepasse from utilisateur where email=:email");
+            $this->update = $db->prepare("UPDATE utilisateur set nom=:nom, prenom=:prenom, motdepasse=:motdepasse, tel=:tel, idrole=:idrole where email=:email");
         } 
 
+        public function update($nom,$prenom,$email,$motdepasse,$tel,$idrole){
+            
+            $r = true;
+            $this->update->execute(array(':nom'=>$email, ':prenom'=>$motdepasse, ':email'=>$tel,':motdepasse'=>$idrole,':tel'=>$nom,':idrole'=>$prenom));
+            if ($this->update->errorCode()!=0){
+            print_r($this->update->errorInfo());
+            $r=false;
+            }
+            return $r;
+            }
+           
+
         public function selectByEmail($email){
+            
             $this->selectByEmail->execute(array(':email'=>$email));
             if ($this->selectByEmail->errorCode()!=0){
             print_r($this->selectByEmail->errorInfo());

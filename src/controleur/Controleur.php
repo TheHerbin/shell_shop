@@ -12,6 +12,7 @@ function contactControleur($twig){
    function maintenanceControleur($twig){
     echo $twig->render('maintenance.html.twig', array());
    }
+  
 
 
 
@@ -103,26 +104,45 @@ function utilisateurControleur($twig, $db){
 
 function modifUtilisateurControleur($twig, $db){
     $form = array();
-    if(isset($_GET['email'])){
-    $utilisateur = new Utilisateur($db);
-    $unUtilisateur = $utilisateur->selectByEmail($_GET['email']);
-    if ($unUtilisateur!=null){
-    $form['utilisateur'] = $unUtilisateur;
-    $role = new Role($db);
-    $liste = $role->select();
-    $form['roles']=$liste;
-    }
-    else{
-    $form['message'] = 'Utilisateur incorrect';
+ if(isset($_GET['email'])){
+ $utilisateur = new Utilisateur($db);
+ $unUtilisateur = $utilisateur->selectByEmail($_GET['email']);
+ 
+ if ($unUtilisateur!=null){
+ $form['utilisateur'] = $unUtilisateur;
+ $role = new Role($db);
+ $liste = $role->select();
+ $form['roles']=$liste;
+ }
+ else{
+ $form['message'] = 'Utilisateur incorrect';
+ }
+ }
+ else{
+ if(isset($_POST['btEnvoyer'])){
+ $utilisateur = new Utilisateur($db);
+ $nom = $_POST['nom'];
+ $email = $_POST['email'];
+ $prenom = $_POST['prenom'];
+ $idrole = $_POST['idrole'];
+ $motdepasse = $_POST['motdepasse'];
+ $tel = $_POST['tel'];
+ $exec=$utilisateur->update($tel, $idrole, $nom, $prenom, $email, password_hash($motdepasse,PASSWORD_DEFAULT));
+ if(!$exec){
+ $form['valide'] = false;
+ $form['message'] = 'Echec de la modification';
+ }
+ else{
+    $form['valide'] = true;
+    $form['message'] = 'Modification réussie';
     }
     }
     else{
     $form['message'] = 'Utilisateur non précisé';
     }
-    echo $twig->render('modifUtilisateur.html.twig', array('form'=>$form));
     }
-
-
+    echo $twig->render('modifUtilisateur.html.twig', array('form'=>$form));
+   }
 
 
 
@@ -168,7 +188,6 @@ function creerObusControleur($twig,$db){
     $nbATGM = $stock->selectATGM();
     echo $twig->render('stock.html.twig', array('form'=>$form,'nbAP'=>$nbAP,'nbAPHE'=>$nbAPHE,'nbAPCR'=>$nbAPCR,'nbHE'=>$nbHE,'nbHEAT'=>$nbHEAT,'nbHESH'=>$nbHESH,'nbATGM'=>$nbATGM));
 }
-
 
 
 

@@ -1,7 +1,7 @@
 <?php
 function getPage($db){
     //var_dump($_GET);
-   
+
 
 
  $lesPages['accueil'] = "accueilControleur;0";
@@ -15,6 +15,8 @@ function getPage($db){
  $lesPages['stock'] = "stockControleur;Administrateur;Client";
  $lesPages['obus'] = "obusControleur;Administrateur;Client";
  $lesPages['modifUtilisateur'] = "modifUtilisateurControleur;Administrateur;Client";
+ 
+
 
 
  if ($db!=null){
@@ -33,12 +35,12 @@ function getPage($db){
     // Nous découpons la ligne du tableau sur le
     //caractère « ; » Le résultat est stocké dans le tableau $explose
    
-    $role = $explose[1]; // Le rôle est dans la 2ème partie du tableau $explose
+    $idrole = $explose[1]; // Le rôle est dans la 2ème partie du tableau $explose
    
-    if ($role != 0){ // Si mon rôle nécessite une vérification
+    if ($idrole != 0){ // Si mon rôle nécessite une vérification
     if(isset($_SESSION['login'])){ // Si je me suis authentifié
-    if(isset($_SESSION['role'])){ // Si j’ai bien un rôle
-    if($role!=$_SESSION['role']){ // Si mon rôle ne correspond pas à celui qui est nécessaire 
+    if(isset($_SESSION['idrole'])){ // Si j’ai bien un rôle
+    if($idrole!=$_SESSION['idrole']){ // Si mon rôle ne correspond pas à celui qui est nécessaire 
         //pour voir la page
     $contenu = 'accueilControleur'; // Je le redirige vers l’accueil, car il n’a pas le bon rôle
     }

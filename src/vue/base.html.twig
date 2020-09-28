@@ -30,12 +30,21 @@
 						</li>
 
 						<li class="nav-item active">
-							<a class="nav-link" href="index.php?page=wiki">Wiki<span class="sr-only">(current)</span>
+							<a class="nav-link" href="index.php?page=obus">Wiki<span class="sr-only">(current)</span>
 							</a>
 						</li>
 					
 						{% if session.login is defined %}
-					
+					{% if session.role == "Client" %}
+						<li class="nav-item active">
+							<a class="nav-link" href="index.php?page=stock">Stock/Boutique<span class="sr-only">(current)</span>
+							</a>
+						</li>
+
+
+
+
+					{% endif %}
 							{% if session.role == "Administrateur" %}
 								<li class="nav-item dropdown">
 									<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
@@ -79,7 +88,7 @@
 						{% endif %}
 						{% if session.login is defined %}
 							<li>
-								<a href="#">{{session.login}}</a>
+								<a href="index.php?page=modifUtilisateur&email={{session.login}}">{{session.login}}</a>
 							</li>
 						{% endif %}
 					</div>
