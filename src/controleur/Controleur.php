@@ -101,6 +101,29 @@ function utilisateurControleur($twig, $db){
     echo $twig->render('utilisateur.html.twig', array('form'=>$form,'liste'=>$liste));
 }
 
+function modifUtilisateurControleur($twig, $db){
+    $form = array();
+    if(isset($_GET['email'])){
+    $utilisateur = new Utilisateur($db);
+    $unUtilisateur = $utilisateur->selectByEmail($_GET['email']);
+    if ($unUtilisateur!=null){
+    $form['utilisateur'] = $unUtilisateur;
+    $role = new Role($db);
+    $liste = $role->select();
+    $form['roles']=$liste;
+    }
+    else{
+    $form['message'] = 'Utilisateur incorrect';
+    }
+    }
+    else{
+    $form['message'] = 'Utilisateur non précisé';
+    }
+    echo $twig->render('modifUtilisateur.html.twig', array('form'=>$form));
+    }
+
+
+
 
 
 function creerObusControleur($twig,$db){

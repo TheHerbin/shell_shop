@@ -5,6 +5,7 @@
         private $connect;
         private $select;
         private $delete;
+        private $selectByEmail;
 
         public function __construct($db){
             $this->db = $db;
@@ -12,7 +13,16 @@
             $this->connect = $this->db->prepare("select email, idrole, motdepasse from utilisateur where email=:email");
             $this->select = $db->prepare("select email, idrole, nom, prenom, tel from utilisateur order by nom");
             $this->delete = $db->prepare("delete from utilisateur where email = :email");
+            $this->selectByEmail = $db->prepare("select email, tel, nom, prenom, idrole from utilisateur where email=:email");
         } 
+
+        public function selectByEmail($email){
+            $this->selectByEmail->execute(array(':email'=>$email));
+            if ($this->selectByEmail->errorCode()!=0){
+            print_r($this->selectByEmail->errorInfo());
+            }
+            return $this->selectByEmail->fetch();
+            }
         
         public function insert($nom,$prenom,$email,$motdepasse,$tel,$idrole){
             $r=true;

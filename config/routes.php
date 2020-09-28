@@ -14,6 +14,7 @@ function getPage($db){
  $lesPages['creerObus'] = "creerObusControleur;Client;Administrateur";
  $lesPages['stock'] = "stockControleur;Administrateur;Client";
  $lesPages['obus'] = "obusControleur;Administrateur;Client";
+ $lesPages['modifUtilisateur'] = "modifUtilisateurControleur;Administrateur;Client";
 
 
  if ($db!=null){

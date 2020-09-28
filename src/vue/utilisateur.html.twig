@@ -23,6 +23,7 @@
 					<th scope="col">Prénom</th>
 					<th scope="col">Rôle</th>
 					<th scope="col"></th>
+					<th scope="col"></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -34,7 +35,9 @@
 						<td>{{u.nom}}</td>
 						<td>{{u.prenom}}</td>
 						<td>{{u.idrole}}</td>
-						<td><a href="index.php?page=utilisateur&email={{u.email}}">Supprimer</a></td>
+						<td>	<a <span href="index.php?page=modifUtilisateur&email={{u.email}}" class="material-icons">edit</span></td>
+					<td>	<a <span href="index.php?page=utilisateur&email={{u.email}}" class="material-icons">clear</span></td>
+						
 					</tr>
                     {% endfor %}
  </tbody>
