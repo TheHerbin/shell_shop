@@ -9,9 +9,12 @@
   <p class="lead">Shell-shop est non-seulement une platefore informative concernant les différents obus des guerres mondiales mais une plateforme d'achat et de vente d'obus</p>
   <hr class="my-4">
   <p>Nous vous souhaitons une bonne navigation sur le site !</p>
+  {% if session.login is defined %}
+  {% else %}
   <p class="lead">
     <a class="btn btn-primary btn-lg" href="index.php?page=creerUtilisateur" role="button">Créer un compte</a>
   </p>
+  {% endif %}
 </div>
 
 {% endblock %}
