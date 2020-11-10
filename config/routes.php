@@ -1,6 +1,6 @@
 <?php
 function getPage($db){
-    //var_dump($_GET);
+    var_dump($_GET);
 
 
 
